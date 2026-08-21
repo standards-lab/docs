@@ -24,11 +24,12 @@ to the standard library alone.
 - **config** — layered configuration: a base file, environment overlays, and secrets, resolved
   through a merge/finalize contract each subsystem's configuration implements. See
   [Configuration](config.md).
-- **lifecycle** — the process lifecycle for long-running programs: concurrent startup, a
-  readiness signal that tracks subsystem status through startup and drain, and timeout-bounded
-  graceful shutdown. The conventions it fixes for every application are documented in the
-  standard's [lifecycle and context ownership](../principles/lifecycle-and-context.md)
-  principle.
+- **lifecycle** — the process lifecycle for long-running programs: staged services with
+  ordered startup, reverse-stage drain, and named readiness checks; bracketing hooks and
+  monitors for process-level callbacks; a readiness signal that tracks the process through
+  startup and drain; and timeout-bounded graceful shutdown. The conventions it fixes for every
+  application are documented in the standard's
+  [lifecycle and context ownership](../principles/lifecycle-and-context.md) principle.
 - **logging** — the `*slog.Logger` a process writes through, built from a configuration that
   takes part in the layered load. See [Logging](logging.md).
 

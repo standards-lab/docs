@@ -40,8 +40,8 @@ Top to bottom:
 - **Domain Service**: the public interface the application presents over one Entity. It exposes
   what may be done to that Entity as two operation kinds: a **Query** is an immutable operation
   that reads the system's current state; a **Command** is a mutable operation that requests a
-  change to it. A Domain Service anchors exactly one Entity, and its module is the unit of
-  registration in the application's route manifest.
+  change to it. A Domain Service anchors exactly one Entity, and its module is the unit the
+  application's route registration mounts.
 - **Entity**: the elemental component. An Entity is a data structure, table-backed or not; it
   defines its intrinsic capability, and the Domain Service decides what of that capability is
   exposed.

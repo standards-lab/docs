@@ -39,10 +39,12 @@ failure; the channel closes when serving stops.
 
 ## Lifecycle wiring
 
-The package registers no lifecycle hooks of its own and owns no shutdown timeout. Its start and
-shutdown methods match the hook signatures of go-core's lifecycle coordinator, so the
-composition root registers them as bare method values. The coordinator's drain context passes
-directly to `http.Server.Shutdown`; a private timeout and a cancellation guard have no
-counterpart here. Shutdown before a successful start is a no-op that leaves the server
-startable, so the drain that follows a failed startup passes through cleanly; once it has
-served, a server is single-use.
+The package registers no lifecycle service of its own and owns no shutdown timeout. Its start
+and shutdown methods match the member signatures of go-core's `lifecycle.Service`, so the
+composition root declares the server as bare method values in the coordinator's root stage —
+started after every infrastructure stage, drained first, so in-flight requests complete before
+the infrastructure beneath them closes. The coordinator's drain context passes directly to
+`http.Server.Shutdown`; a private timeout and a cancellation guard have no counterpart here.
+Shutdown before a successful start is a no-op that leaves the server startable, so the drain
+that follows a failed startup passes through cleanly; once it has served, a server is
+single-use.
