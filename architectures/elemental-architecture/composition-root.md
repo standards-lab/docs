@@ -41,4 +41,7 @@ the configuration itself.
 The composition root is written once and runs at boot, so every wiring mistake fails there,
 immediately and loudly: a duplicate registration, a missing dependency, a malformed route
 prefix. A loud failure at startup is cheap; the same mistake surfacing silently in production is
-not. Implementations enforce this with panics at construction time.
+not. Implementations enforce this with panics at construction time, and a wiring mistake the
+language can surface at compile time — a dependency that is a concrete field rather than a
+looked-up entry — fails earlier still; the principle sets the latest acceptable moment, not the
+preferred one.

@@ -30,8 +30,8 @@ go-core and go-web-sdk pins.
 
 ## Design
 
-- [The baseline](baseline.md) — the architecture the template scaffolds: the composition root's
-  three manifests and the machinery they feed.
+- [The baseline](baseline.md) — the architecture the template scaffolds: the App composition
+  root, the build points, and the entrypoint.
 - [The elements in the template](elements.md) — how the baseline realizes the Elemental
   Architecture's elements.
 - [The template subtree](template-subtree.md) — why the module is rooted at `template/`, and the

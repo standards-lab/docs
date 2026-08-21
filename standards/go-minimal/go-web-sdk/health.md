@@ -15,9 +15,11 @@ API; this page records the reasoning.
 `/healthz` reports that the process is up and serving HTTP and checks nothing else; that is
 what makes an unanswered probe the liveness signal rather than a 500. `/readyz` aggregates
 whatever readiness participants the composition root supplies; the SDK contributes none of its
-own. Each participant is named, so an operator can read which subsystem is failing the probe,
-and a check with a nil checker reports not ready, so a subsystem that failed to construct fails
-the probe rather than vanishing from it.
+own. Each participant is a go-core `lifecycle.Check` — the name lets an operator read which
+subsystem is failing the probe, and a check with a nil checker reports not ready, so a
+subsystem that failed to construct fails the probe rather than vanishing from it. The pairing
+is defined in go-core because naming a readiness check is process-level, not web-level:
+application-generic code declares its checks without importing this SDK.
 
 ## Readiness reflects the live state of the process
 
@@ -33,5 +35,6 @@ participant, continuously:
   503 and stops receiving traffic before its shutdown hooks run; unlike degradation, draining is
   terminal, and readiness never returns.
 
-Composition roots register the coordinator as the first participant; each subsystem that reports
-its own readiness joins the list as it is constructed.
+Composition roots supply the coordinator as the first participant, under a name of the
+application's choosing; each subsystem that reports its own readiness joins through the check
+on its service declaration, and the coordinator returns them in start order.
