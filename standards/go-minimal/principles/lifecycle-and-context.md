@@ -21,6 +21,10 @@ stage, its startup, shutdown, and readiness check in one declaration — while p
 callbacks register as hooks and monitors. Nothing executes before the run begins, and the
 coordinator installs no signal handlers of its own.
 
+Not every composition-root layer registers a staged service. A layer with no resource and
+nothing that runs, such as the Elemental Architecture's Domain Service composition, declares
+none and imports no part of this package: there is nothing in it to stage.
+
 ## Cold start, hot start, drain
 
 Cold start constructs every object from configuration with no I/O, so a construction mistake

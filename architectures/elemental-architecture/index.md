@@ -16,9 +16,9 @@ The architecture keeps two inheritances: the separations of domain-driven design
 query/command operation model of CQRS. It deliberately drops the vocabulary DDD accumulated
 around them (aggregates, value objects, repositories, command buses), because that vocabulary
 existed to keep monolithic applications coherent. In a system of many narrowly scoped services,
-each application is small enough that the four elements below describe its entire design.
-"Feature" was considered as a fifth element and rejected: every candidate feature is exactly one
-Entity and its Domain Service, so the term would only relabel a pair the elements already
+each application is small enough that the five elements below describe its entire design.
+"Feature" was considered as a further element and rejected: every candidate feature is exactly
+one Entity and its Domain Service, so the term would only relabel a pair the elements already
 describe. Features stay informal prose.
 
 ## The elements
@@ -32,6 +32,11 @@ Top to bottom:
   application layer. Application types (a web service, a CLI, a game) share this architecture;
   they differ in composition-root initialization sequence, runtime cycle, and deployment
   platform. A web service is an application whose form is a containerized public API.
+- **Reactor**: an entry point driven by an occurrence from outside the application rather than a
+  caller (a subscription, a poll interval, a schedule). It owns the transport connection the
+  occurrence arrives on, calls a Domain Service, and runs for the process lifetime: the inbound
+  counterpart to the application layer's transport, which a caller drives instead. A Reactor is
+  not a Domain Service; it dispatches to one.
 - **Infrastructure Services**: the process-level services an application is composed on, such as
   the logger, the database, storage, and auth. Their APIs are defined outside the application,
   and they are distinct from domain services. They follow a uniform lifecycle contract: ordered
@@ -40,8 +45,8 @@ Top to bottom:
 - **Domain Service**: the public interface the application presents over one Entity. It exposes
   what may be done to that Entity as two operation kinds: a **Query** is an immutable operation
   that reads the system's current state; a **Command** is a mutable operation that requests a
-  change to it. A Domain Service anchors exactly one Entity, and its module is the unit the
-  application's route registration mounts.
+  change to it. A Domain Service anchors exactly one Entity, and its module is the unit a route
+  or a Reactor calls.
 - **Entity**: the elemental component. An Entity is a data structure, table-backed or not; it
   defines its intrinsic capability, and the Domain Service decides what of that capability is
   exposed.
@@ -51,7 +56,10 @@ element stack: an event tells a system outside the domain that a mutation commit
 architecture defines emission only; delivery guarantees belong to the messaging system that
 receives the event. This is the [service tiers](../../principles/service-tiers.md) pattern
 applied to eventing. Events are never used inside the application: an internal cascade is a
-transactional command cascade through entity operations.
+transactional command cascade through entity operations. The same is true on the inbound side: a
+Reactor consuming an event from another system is not an exception to it. The event stops being
+one at the process boundary; what crosses is the occurrence that triggers a Domain Service call,
+the same as any other Reactor source.
 
 ## The rules
 
@@ -66,8 +74,9 @@ transactional command cascade through entity operations.
   Service of the Entity that owns the transaction, which composes the other entities' operations
   within it.
 - **Dependencies flow downward through the elements.** The application layer depends on
-  everything it assembles; domain services depend on their Entity and the infrastructure
-  services they use; entities depend on nothing above themselves. This is the organizational
+  everything it assembles; a Reactor depends on the infrastructure connection it owns and the
+  Domain Service it calls; domain services depend on their Entity and the infrastructure services
+  they use; entities depend on nothing above themselves. This is the organizational
   [downward-dependency principle](../../principles/downward-dependencies.md), ordered by the
   elements.
 - **A proven pattern sinks to the lowest level at which it is generic.** A pattern is proven in

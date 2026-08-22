@@ -61,7 +61,7 @@ principles satisfy its standard's; a standard's satisfy the organization's.
 
 - [Elemental Architecture](architectures/elemental-architecture/index.md) — an organizational
   application architecture: the compositional elements a program is built from — application,
-  infrastructure services, domain services, entities — and the rules that bind them.
+  reactor, infrastructure services, domain services, entities — and the rules that bind them.
 
 ## Standards
 
