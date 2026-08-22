@@ -16,9 +16,11 @@ dependency; everything else receives its dependencies from the composition root.
 
 The composition root's output is a declared composition, and execution belongs to the
 [application layer](index.md). The root states which infrastructure services exist and in what
-order they start, which domain-service modules mount on which routes, and which middleware wraps
-the transport. Keeping the root declarative keeps the application's entire composition readable
-in one place: a reviewer can see everything the application is made of without tracing
+order they start, which domain-service modules mount on which routes, which Reactors run
+alongside the transport, and which middleware wraps it. A root is not limited to one runner: the
+transport and any Reactors all register on the same lifecycle coordinator, ordered by stage like
+any other service. Keeping the root declarative keeps the application's entire composition
+readable in one place: a reviewer can see everything the application is made of without tracing
 execution.
 
 ## It is the boundary for provider imports

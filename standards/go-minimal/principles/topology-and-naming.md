@@ -44,6 +44,29 @@ changes.
   sub-package is earned when its contents are a growth area or when a dependency is heavy enough
   that the rest of the module should not compile it.
 
+## Application-layer import direction
+
+Every Go Minimal application — whatever its type — divides into three tiers with one import
+direction: `cmd/*` imports only `internal/*`, `internal/*` is the composition root and may import
+any root-level package, and nothing at the root level imports `internal/*`. A `cmd/*` binary is
+initialization alone: it constructs the application from `internal/*` and never reaches past it.
+`internal/*`'s own layers import each other and the root-level packages that make up the
+application's domain and infrastructure, but the reverse never happens — a root-level package
+importing back into `internal/*` would make domain code depend on how it is wired, not on what it
+is.
+
+Go's `internal/` visibility rule enforces only the outer edge: nothing outside the module can
+import a package under `internal/`. It enforces nothing on the inner one — within the module, a
+root-level package importing `internal/domain` compiles. The direction is a convention, kept by
+review and package documentation, not by the compiler.
+
+This is an Application-layer principle, independent of application type: what a web service's
+`internal/app` orchestrates from `internal/infrastructure`, `internal/domain`, and
+`internal/reactors` (see the [web service template](../go-web-sdk-template/baseline.md)) is one
+realization; a CLI or a worker composes its own `internal/*` layers the same way. It does not
+apply to a core SDK or an application SDK, which are libraries, not applications, and have no
+`internal/*` composition root of their own.
+
 ## Release tags
 
 - A module rooted at the repository is tagged `v<semver>`.

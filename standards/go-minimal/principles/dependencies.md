@@ -39,4 +39,7 @@ A library integrates with go-core by implementing its contracts rather than by i
 of it than it uses. The configuration contract is imported where a module's configuration block
 joins the layered load. Lifecycle integration is structural: a module's start, shutdown, and
 readiness methods match the coordinator's hook signatures, and the composition root registers
-them, so the module itself needs no lifecycle import.
+them, so the module itself needs no lifecycle import. Integration is also optional per layer: a
+composition-root layer with nothing that starts, stops, or reports readiness, the Elemental
+Architecture's Domain Service composition among them, registers nothing and needs no lifecycle
+import either.

@@ -16,14 +16,17 @@ scaffolded baseline and adds nothing to the definition.
   [composition root](../../../architectures/elemental-architecture/composition-root.md) is
   `internal/app`, where the `App` structure orchestrates the root composition from the
   service's build points; `cmd/server` is the entrypoint alone.
-- **Application layer** — `internal/app`. It owns the `Infrastructure` struct and the process
-  lifecycle, assembles the transport, and runs the process — all inside `New` and `Run`, so
-  the build points stay declarative.
+- **Application layer** — `internal/app`. It owns the process lifecycle, assembles
+  infrastructure, the domain, and the reactors into a router, and runs the process — all inside
+  `New` and `Run`, so the build points stay declarative.
+- **Reactor** — `internal/reactors`, composed over the domain and registered on the coordinator
+  alongside the transport. The baseline ships it empty; a generated service that reacts to an
+  external occurrence adds a field here and constructs it in `New`.
 - **Infrastructure Services** — the fields of `Infrastructure`, constructed by
   `infrastructure.New` with their lifecycles declared on the staged coordinator. The
   baseline's one field is the logger; a database pool, storage, or auth client is one more
   field with its lifecycle declaration.
-- **Domain Service** — arrives with a generated service rather than the template. Its module is
-  the unit route registration mounts, and the baseline's empty registration is where it enters
-  the application.
+- **Domain Service** — arrives with a generated service rather than the template.
+  `internal/domain` composes it over `Infrastructure`; its module is what a route or a Reactor
+  calls, and the baseline's empty `Domain` struct is where a generated service adds it.
 - **Entity** — arrives with the domain services; the template reserves no vocabulary below it.

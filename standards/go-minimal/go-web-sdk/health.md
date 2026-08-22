@@ -13,13 +13,16 @@ API; this page records the reasoning.
 ## The probes report; they do not check
 
 `/healthz` reports that the process is up and serving HTTP and checks nothing else; that is
-what makes an unanswered probe the liveness signal rather than a 500. `/readyz` aggregates
-whatever readiness participants the composition root supplies; the SDK contributes none of its
-own. Each participant is a go-core `lifecycle.Check` — the name lets an operator read which
-subsystem is failing the probe, and a check with a nil checker reports not ready, so a
-subsystem that failed to construct fails the probe rather than vanishing from it. The pairing
-is defined in go-core because naming a readiness check is process-level, not web-level:
-application-generic code declares its checks without importing this SDK.
+what makes an unanswered probe the liveness signal rather than a 500. `/readyz` aggregates the
+readiness participants `RegisterHealth` builds from the lifecycle coordinator the composition
+root supplies: the coordinator itself, first, under the fixed name `"lifecycle"`, then every
+service that declares its own check, in start order — queried fresh on every request rather
+than once when `RegisterHealth` is called, so a service the coordinator gains afterward still
+appears on the next probe. Each participant is a go-core `lifecycle.Check`: the name lets an
+operator read which subsystem is failing the probe, and a check with a nil checker reports not
+ready, so a subsystem that failed to construct fails the probe rather than vanishing from it.
+The pairing is defined in go-core because naming a readiness check is process-level, not
+web-level: application-generic code declares its checks without importing this SDK.
 
 ## Readiness reflects the live state of the process
 
@@ -35,6 +38,8 @@ participant, continuously:
   503 and stops receiving traffic before its shutdown hooks run; unlike degradation, draining is
   terminal, and readiness never returns.
 
-Composition roots supply the coordinator as the first participant, under a name of the
-application's choosing; each subsystem that reports its own readiness joins through the check
-on its service declaration, and the coordinator returns them in start order.
+`RegisterHealth` supplies the coordinator as the first participant itself, under the fixed name
+`"lifecycle"`; each subsystem that reports its own readiness joins through the check on its
+service declaration, and the coordinator returns them in start order. Exposing an in-progress
+service's check this way is safe only because the transport itself registers at
+`lifecycle.StageRoot`: no request reaches the probe until every numbered stage exists.
