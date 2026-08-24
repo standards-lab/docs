@@ -32,6 +32,10 @@ to the standard library alone.
   [lifecycle and context ownership](../principles/lifecycle-and-context.md) principle.
 - **logging** — the `*slog.Logger` a process writes through, built from a configuration that
   takes part in the layered load. See [Logging](logging.md).
+- **process** — the pre-infrastructure main sequence of a binary: the signal-derived root
+  context, failure and usage reporting before a logger exists, and the exit-code convention
+  the reporters return. The conventions it fixes are documented in the standard's
+  [lifecycle and context ownership](../principles/lifecycle-and-context.md) principle.
 
 The code and each package's `doc.go` are authoritative for the API; these pages document the
 design.
