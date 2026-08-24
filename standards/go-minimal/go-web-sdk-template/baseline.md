@@ -21,8 +21,10 @@ process. `cmd/server` is the entrypoint alone, importing only `internal/app`, pe
 [import direction](../principles/topology-and-naming.md) every Go Minimal application follows.
 
 - **The entrypoint** (`cmd/server`) owns the signal-derived root context and the exit code,
-  through a testable run function: configuration load, `app.New`, run. It never changes as the
-  service grows.
+  through a testable run function: configuration load, `app.New`, run. The pre-infrastructure
+  sequence comes from go-core's `process` package — `SignalContext` for the root context,
+  `Fail` for failure reporting before a logger exists, and the exit codes the reporters
+  return. It never changes as the service grows.
 - **The application layer** (`internal/app`) separates cold start from hot start. `New`
   creates the lifecycle coordinator, constructs the infrastructure, the domain over it, and the
   reactors over both, assembles the router from the registered routes and the middleware stack,
@@ -58,7 +60,9 @@ process. `cmd/server` is the entrypoint alone, importing only `internal/app`, pe
   itself.
 - **The configuration root** (`internal/config`) composes the library configuration blocks with
   the service's own settings and loads them through the layered files under one environment
-  prefix.
+  prefix. Its `configtest` package builds the hermetically valid configuration the suites use —
+  the single place the tests learn what the root config requires, where a subsystem's new
+  required field is set once.
 
 The readiness probe reads the lifecycle coordinator and every service's named check, queried
 fresh on every request: not ready until startup completes, not ready again once draining
