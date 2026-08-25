@@ -12,8 +12,12 @@ that executes it. Every tool that touches the gap covers a corner. sqlc proves s
 codegen but binds to one host language and composes nothing. PRQL and Malloy prove
 compile-to-dialect-SQL but abandon SQL's own surface, carry no schema contract, and offer no
 host bindings. dbt proves composable templates as untyped string macros. LINQ and Entity
-Framework prove host-integrated querying by locking the query language inside one host. ORMs
-as a category paper over the gap by hiding SQL rather than composing it.
+Framework prove host-integrated querying by locking the query language inside one host. Rust's
+sqlx proves compile-time checking of plain SQL — by asking a live database, for one host
+language. sqlglot proves dialect compilation is tractable, transpiling across some twenty
+engines; SQLMesh, built on it, is the closest thing to composable typed definitions in SQL's
+own surface, and it targets analytics pipelines with no host bindings at all. ORMs as a
+category paper over the gap by hiding SQL rather than composing it.
 
 Nobody has combined: a SQL-compliant surface, schema-typed checking, composable definitions,
 language-neutral host bindings, and an explicit standard/native tier split. The last item is
@@ -60,6 +64,28 @@ the natural proving ground: its migrations own a real schema, its query package 
 runtime AST a compiler would target, and its planned .NET mirror is the second host language
 that keeps the bindings honest.
 
+## The path out of concept stage
+
+The goal case for this concept is a specification session: one session that converts this
+document into a specification structured for autonomous loop engineering. The build divides
+along a line the specification exists to draw — design decisions and verification oracles are
+settled by the developer up front, and the component work (parser, inference, backends,
+binding generators) runs as autonomous loops inside those frozen contracts, verified against
+oracles the loops cannot edit: round-tripping through the formatter, differential execution
+against a migrated engine, inferred row shapes checked against the engine's own
+prepared-statement describe.
+
+The specification is therefore a set of seam documents, each carrying a resolved or open
+status: the surface grammar, the IR and binding-manifest contract, the type system and its
+inference strategy, the oracle harness, and the milestone decomposition into loops. The
+authoring session settles what one session can settle and leaves the rest explicitly open;
+hard seams take their own follow-up sessions.
+
+When the authoring session completes, the specification transitions out of this concept into
+`context/spec/` in the meta language's own repository (the home named in the open questions).
+Once every seam in that directory is resolved, it initializes the loop-engineering session
+that builds the project. This concept page then decays to a pointer.
+
 ## Boundaries inherited from the architecture
 
 - DML only. Migrations own the schema; DDL composition would compete with them. Metadata
@@ -69,6 +95,11 @@ that keeps the bindings honest.
   per-unit and declared — the language-level analogue of the import-boundary lint.
 - Not a dependency of the v1 path. The query package stands on its own; the meta language is a
   possible authoring surface above it, and nothing in v1 waits on it.
+- The split of labor is permanent, not transitional. Compiled units own what is authorable
+  ahead of time; the host-side AST owns what the request shapes at runtime — dynamic filters,
+  sorts, paging. The meta language displaces the static-query ladder (codegen, builders,
+  templates), not the dynamic half the query package serves; that half is where ORMs live, and
+  it stays a runtime concern by design.
 
 ## Open questions
 
@@ -78,6 +109,11 @@ that keeps the bindings honest.
   versions.
 - Schema source of truth: migration-set parsing versus introspection of a migrated database,
   and how provider type mappings are declared.
+- Row-shape inference: checking a column against the schema is easy; typing a query's result —
+  nullability through outer joins, aggregates over empty groups, CASE branches, set operations
+  — is where sqlc has spent its defect budget and where sqlx punts to a live engine's describe.
+  Owning the inference versus asking a migrated database is entangled with the schema-source
+  question, because introspection gets the engine's own answer for free.
 - Dynamic composition: where the compiled-unit boundary ends and the runtime (or the host-side
   AST, like the query package) takes over.
 - Name and home: its own repository under the organization when it leaves concept stage.
