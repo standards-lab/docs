@@ -15,6 +15,9 @@ Candidate entries, from the conventions marathon is laying down:
 - schema-driven skill artifacts (`marathon.toml`)
 - workspace coordination
 - an extension system with encapsulated external extensions
+- passive extension skills — `user-invocable: false` in the SKILL.md frontmatter keeps a skill
+  out of the slash-command menu while the model can still load it, so a skill meant to be
+  resolved by another skill's workflow (a marathon extension) never presents as a command
 - a standardized execution pipeline with command and hook integrations
 - the `~/claude-settings` tool and behavior programming
 
