@@ -63,6 +63,13 @@ principles satisfy its standard's; a standard's satisfy the organization's.
   application architecture: the compositional elements a program is built from — application,
   reactor, infrastructure services, domain services, entities — and the rules that bind them.
 
+## Harness
+
+The harness level stands outside the four documentation levels above: it governs the agentic
+infrastructure the organization builds its repositories with, not the software they contain. Its
+principles are cataloged at [`harness/`](harness/index.md), with the harness repositories as the
+worked examples.
+
 ## Standards
 
 - [Go Minimal](standards/go-minimal/index.md) — the minimal-dependency Go standard: a complete
