@@ -16,6 +16,7 @@ level of the hierarchy:
 | Architectures | [`architectures/`](architectures/index.md) | Technology-agnostic definitions of a domain's elements and rules |
 | Standards | [`standards/<key>/`](standards/index.md) | Each standard: a technology-specific implementation of an architecture, with its own principles |
 | Repositories | `standards/<key>/<repo>/` | Each member repository's documented details |
+| Harness | [`harness/`](harness/index.md) | Principles for the agentic infrastructure the organization builds with; outside the four software levels |
 
 Three terms bind the levels. An **architecture** defines a domain's compositional elements and
 the rules that bind them, independent of any technology. A **standard** implements an
@@ -36,8 +37,8 @@ type: standard          # index | principle | architecture | standard | reposito
 
 Per-type fields:
 
-- `type: principle` — `level`: `organization`, or the key of the standard or architecture the
-  principle attaches to.
+- `type: principle` — `level`: `organization`, `harness`, or the key of the standard or
+  architecture the principle attaches to.
 - `type: architecture` — `status`: `draft` | `active` | `superseded`.
 - `type: standard` — `architecture`: the key of the architecture the standard implements;
   `status` as above; `derives`: the key of the standard it re-expresses, when it does.

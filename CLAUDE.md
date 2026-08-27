@@ -36,6 +36,7 @@ it:
 - `architectures/` — the language-agnostic software architectures.
 - `standards/<key>/` — each standard's definition, its principles, and its member repositories'
   documented details.
+- `harness/` — principles for the agentic infrastructure the organization builds with, outside
+  the software hierarchy above.
 
-Every page opens with YAML front matter; the schema is documented in `README.md`. Prose follows
-the marathon voice standard.
+Every page opens with YAML front matter; the schema is documented in `README.md`.
