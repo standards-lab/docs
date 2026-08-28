@@ -32,9 +32,11 @@ process. `cmd/server` is the entrypoint alone, importing only `internal/app`, pe
   I/O; `Run` is the hot start plus shutdown, delegated to go-core's coordinator. The server
   occupies the root stage — started after every infrastructure stage, drained first — so
   in-flight requests complete before the infrastructure beneath them closes.
-- **Route registration** (`internal/app/routes.go`) declares the modules the router mounts,
-  each constructor drawing its dependencies from `Domain`. The baseline registers none; the
-  file is the build point for domain-service modules.
+- **Route registration** (`internal/app/routes.go`) declares the modules the router mounts:
+  the one `/api` group, shipped initialized and empty. An application mounts its
+  domain-service route groups into it, each constructor drawing its dependencies from
+  `Domain` and each handler handed its policy from the config root at the construction
+  site — the file is the build point, and the empty group serves no route in the baseline.
 - **The middleware stack** (`internal/app/middleware.go`) declares the router-level middleware,
   outermost first, drawing its dependencies from `Infrastructure`: the baseline's one
   middleware, request logging, is a cross-cutting infrastructure concern. Middleware that needs
