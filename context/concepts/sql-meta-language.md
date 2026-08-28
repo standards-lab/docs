@@ -1,7 +1,8 @@
 # The SQL meta language
 
-Captured 2026-08-25, during the go-database `query-vocabulary` session that designed the query
-package's composition core. Unscheduled R&D beyond the v1 path; `backlog.sql-meta-language` in
+Captured 2026-08-25, during the go-database `query-vocabulary` session that designed the
+composition core now in the `ast` package (renamed and layered in the `writes-vocabulary`
+session, 2026-08-28). Unscheduled R&D beyond the v1 path; `backlog.sql-meta-language` in
 the workspace roadmap cites this concept.
 
 ## The gap
@@ -42,16 +43,16 @@ typed bindings.
   with per-provider mappings. This is what makes editor completion real rather than keyword
   lists.
 - **Compilation.** Typed AST, then provider backends emitting dialect SQL. The go-database
-  query package's statement-as-value AST is this compiler's runtime shape seen from the other
+  ast package's statements-as-values are this compiler's runtime shape seen from the other
   side: the Go composition core is the dynamic half, and the meta language would be the
-  authoring surface above it, lowering to the same statements.
+  authoring surface above it, lowering to the same statement values.
 - **Host-language neutrality.** The protobuf model: the compiler emits provider SQL plus a
   neutral binding manifest — parameters in, row shapes out, as a JSON intermediate
   representation — and thin per-language generators produce typed wrappers: Go structs today,
   C# for the .NET mirror later. Hosts bind to generated types and the IR, never to the
   language. Distributing the compiler as WASM or a C ABI lets any toolchain embed it; a small
-  optional runtime handles dynamic composition, which is the directives use case the query
-  package serves today.
+  optional runtime handles dynamic composition, which is the directives use case go-database's
+  operation package serves today.
 - **Tooling.** An LSP server for schema-aware completion and type errors, and a formatter.
   The LSP is the bulk of "feels like a first-class language."
 
@@ -60,7 +61,7 @@ typed bindings.
 A real language project: grammar, type checker, one backend (Postgres), one binding generator
 (Go), and the LSP. A credible seed is a few focused milestones, not a weekend, and each
 component has proven precedent — the combination is the novelty. The reference architecture is
-the natural proving ground: its migrations own a real schema, its query package defines the
+the natural proving ground: its migrations own a real schema, its ast package defines the
 runtime AST a compiler would target, and its planned .NET mirror is the second host language
 that keeps the bindings honest.
 
@@ -93,18 +94,29 @@ that builds the project. This concept page then decays to a pointer.
   diverge).
 - The tier rule is load-bearing: the core never grows past the standard, and native reach is
   per-unit and declared — the language-level analogue of the import-boundary lint.
-- Not a dependency of the v1 path. The query package stands on its own; the meta language is a
+- Not a dependency of the v1 path. The ast package stands on its own; the meta language is a
   possible authoring surface above it, and nothing in v1 waits on it.
 - The split of labor is permanent, not transitional. Compiled units own what is authorable
   ahead of time; the host-side AST owns what the request shapes at runtime — dynamic filters,
   sorts, paging. The meta language displaces the static-query ladder (codegen, builders,
-  templates), not the dynamic half the query package serves; that half is where ORMs live, and
-  it stays a runtime concern by design.
+  templates), not the dynamic half the ast and operation packages serve; that half is where
+  ORMs live, and it stays a runtime concern by design.
 
 ## Open questions
 
 - Surface syntax: strict ISO SQL plus a module/definition layer, or a conservative superset —
-  and how parameters and fragments are declared in it.
+  and how parameters and fragments are declared in it. Partially settled 2026-08-28: fragment
+  references in a query file stay SQL-legal. A reusable definition — a shared projection, say —
+  is declared in view or table-valued-function syntax and referenced the way SQL references
+  one; the compiler resolves the name against the fragment set and inlines it at compile time
+  instead of expecting a database object. Every file stays inside existing SQL editor tooling
+  (completion, formatting, the language server), and a fragment carries a declared shape,
+  checked once in isolation rather than per splice. A template layer (Go `text/template` was
+  the candidate) was considered and set aside: template actions inside query files break the
+  editor infrastructure the standard surface exists to preserve, and textual splices type-check
+  only per instantiation. Template expansion may still serve as internal phase-one machinery
+  before the type checker exists, with source mapping owed for diagnostics. Still open: the
+  definition syntax's exact form and how parameters are declared on it.
 - The IR contract: what the binding manifest guarantees across language generators, and how it
   versions.
 - Schema source of truth: migration-set parsing versus introspection of a migrated database,
@@ -115,5 +127,5 @@ that builds the project. This concept page then decays to a pointer.
   Owning the inference versus asking a migrated database is entangled with the schema-source
   question, because introspection gets the engine's own answer for free.
 - Dynamic composition: where the compiled-unit boundary ends and the runtime (or the host-side
-  AST, like the query package) takes over.
+  AST, like the ast package) takes over.
 - Name and home: its own repository under the organization when it leaves concept stage.
