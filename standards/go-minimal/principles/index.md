@@ -11,6 +11,7 @@ The conventions every Go Minimal repository shares. Each enhances the
 repository may enhance one further, stating the enhancement where it links to the principle.
 
 - [Dependencies](dependencies.md)
+- [Baseline-standard ownership](baseline-standards.md)
 - [Topology and naming](topology-and-naming.md)
 - [Lifecycle and context ownership](lifecycle-and-context.md)
 - [Tests and documentation](tests-and-docs.md)
