@@ -18,6 +18,21 @@ application's vocabulary, and an SDK that mints one claims semantics it does not
 problem the SDK emits is `about:blank`, which the RFC defines as "no semantics beyond the HTTP
 status code", and a consumer brings its own URIs through the problem writers' extension points.
 
+## The error-to-problem mapping
+
+`ErrorWriter` turns a handler's returned error into a problem response through a composed
+matcher list. The SDK maps only its own vocabulary — a `QueryError` is a 400, built in; every
+other status comes from a consumer-supplied `StatusMatcher`, consulted in order with first
+match winning and 500 the fallback. Status mapping is application policy (whether a
+foreign-key violation is a 409 or a 400 is the service's to say), and the matcher list is what
+keeps the SDK and the infrastructure libraries peers: the SDK imports no infrastructure
+library's error types, and a new infrastructure library costs the SDK nothing — its errors are
+one more matcher at the consumer's composition root.
+
+The detail member carries the error text only on a 400, where it is request-shaped and
+client-actionable; every other status sends the bare title, so no internal error's text
+reaches the wire.
+
 ## The readiness extension member
 
 The readiness probe attaches a `checks` extension member (RFC 9457's term) to an `about:blank`

@@ -25,9 +25,10 @@ middleware instances to be defined ([topology and naming](../principles/topology
 - [The server](server.md) — the server bootstrap: bind on the calling goroutine, serve in the
   background, integrate with the lifecycle coordinator.
 - [Routing](routing.md) — groups, modules, and the router; composed once at wiring time.
-- [Problem responses](problems.md) — the SDK defines no problem types.
-- [Paginated reads](reads.md) — the paging directives and the success envelope; no storage
-  detail, no SDK-owned policy numbers.
+- [Problem responses](problems.md) — the SDK defines no problem types; the error-to-problem
+  mapping keeps status policy consumer-declared.
+- [Paginated reads](reads.md) — one parse splitting paging from filters, and the success
+  envelope; no storage detail, no SDK-owned policy numbers.
 - [Health](health.md) — the probes report, they do not check; readiness reflects the live state
   of the process, from startup through degradation to drain.
 - [Middleware](middleware.md) — why HTTP middleware is defined in this SDK, with the
