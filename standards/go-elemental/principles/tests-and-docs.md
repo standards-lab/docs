@@ -2,7 +2,7 @@
 key: tests-and-docs
 name: Tests and documentation
 type: principle
-level: go-minimal
+level: go-elemental
 ---
 
 # Tests and documentation

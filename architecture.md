@@ -8,9 +8,20 @@ status: active
 # Elemental Architecture
 
 An organizational application architecture: the compositional elements a program is built from
-and the rules that bind them, independent of language and dependency posture. What the elements
-are and how they relate is defined here; how each element is implemented emerges at its first
-consumer and is documented in the repository that builds it.
+and the rules that bind them, independent of language. What the elements are and how they
+relate is defined here; how each element is implemented emerges at its first consumer and is
+documented in the repository that builds it.
+
+The architecture's purpose is optimizing supply-chain boundaries, and a minimal, deliberate
+dependency surface is one of its core principles — not a posture its standards choose
+privately. The boundary works in two dimensions: it mitigates what a dependency admits into the
+architecture, and it establishes the clean maintenance boundaries that keep capabilities
+flexible, scalable, and maintainable for the long haul — a handful of deliberately sourced
+dependencies can be held pinned and current; fifty cannot. The
+[minimal-footprint principle](principles/minimal-footprint.md) states this purpose in
+principle form; an implementing standard draws its own dependency line as an enhancement of
+it, tightening and never loosening. A framework-heavy standard in the same language would not
+be a competing implementation of Elemental — it would not implement Elemental at all.
 
 The architecture keeps two inheritances: the separations of domain-driven design and the
 query/command operation model of CQRS. It deliberately drops the vocabulary DDD accumulated
@@ -27,7 +38,7 @@ Top to bottom:
 
 - **Application**: the deployable unit of a binary software project. The **application layer**
   owns the infrastructure services and the process lifecycle, assembles the transport, and runs
-  the process. Its [composition root](composition-root.md) is the package where the application
+  the process. Its [composition root](principles/composition-root.md) is the package where the application
   assembles its dependencies; it only declares the composition, and execution belongs to the
   application layer. Application types (a web service, a CLI, a game) share this architecture;
   they differ in composition-root initialization sequence, runtime cycle, and deployment
@@ -54,7 +65,7 @@ Top to bottom:
 **Events** are the architecture's single cross-system mechanism, and they are not a layer in the
 element stack: an event tells a system outside the domain that a mutation committed. The
 architecture defines emission only; delivery guarantees belong to the messaging system that
-receives the event. This is the [service tiers](../../principles/service-tiers.md) pattern
+receives the event. This is the [service tiers](principles/service-tiers.md) pattern
 applied to eventing. Events are never used inside the application: an internal cascade is a
 transactional command cascade through entity operations. The same is true on the inbound side: a
 Reactor consuming an event from another system is not an exception to it. The event stops being
@@ -77,7 +88,7 @@ the same as any other Reactor source.
   everything it assembles; a Reactor depends on the infrastructure connection it owns and the
   Domain Service it calls; domain services depend on their Entity and the infrastructure services
   they use; entities depend on nothing above themselves. This is the organizational
-  [downward-dependency principle](../../principles/downward-dependencies.md), ordered by the
+  [downward-dependency principle](principles/downward-dependencies.md), ordered by the
   elements.
 - **A proven pattern sinks to the lowest level at which it is generic.** A pattern is proven in
   application code first, then graduates: to the application SDK when it is specific to the
@@ -89,7 +100,7 @@ the same as any other Reactor source.
 
 ## Principles
 
-- [The composition root](composition-root.md) — the one package where an application assembles
+- [The composition root](principles/composition-root.md) — the one package where an application assembles
   and declares its composition.
 
 ## A note on "Domain Service"
@@ -101,6 +112,6 @@ should read the definition above rather than assuming the inherited, broader one
 ## Implementing standards
 
 A standard declares the architecture it implements in its definition.
-[Go Minimal](../../standards/go-minimal/index.md) is the first implementing standard; its
-[web service template](../../standards/go-minimal/go-web-sdk-template/index.md) is the first
+[Go Elemental](standards/go-elemental/index.md) is the first implementing standard; its
+[web service template](standards/go-elemental/go-web-sdk-template/index.md) is the first
 code expression of the elements.

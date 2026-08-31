@@ -2,12 +2,12 @@
 key: release-and-ci
 name: Releases and CI
 type: principle
-level: go-minimal
+level: go-elemental
 ---
 
 # Releases and CI
 
-How Go Minimal repositories are versioned, released, built, and tested. Every repository
+How Go Elemental repositories are versioned, released, built, and tested. Every repository
 releases independently ([independent releases](../../../principles/independent-releases.md));
 this page states the shared mechanics and the variants each tier adds.
 

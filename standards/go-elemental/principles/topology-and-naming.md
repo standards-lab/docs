@@ -2,12 +2,12 @@
 key: topology-and-naming
 name: Topology and naming
 type: principle
-level: go-minimal
+level: go-elemental
 ---
 
 # Topology and naming
 
-How Go Minimal repositories, modules, packages, and release tags are named, and the module
+How Go Elemental repositories, modules, packages, and release tags are named, and the module
 layout of each tier. The tiers themselves are defined by the organizational
 [repository topology](../../../principles/repository-topology.md).
 
@@ -46,7 +46,7 @@ changes.
 
 ## Application-layer import direction
 
-Every Go Minimal application — whatever its type — divides into three tiers with one import
+Every Go Elemental application — whatever its type — divides into three tiers with one import
 direction: `cmd/*` imports only `internal/*`, `internal/*` is the composition root and may import
 any root-level package, and nothing at the root level imports `internal/*`. A `cmd/*` binary is
 initialization alone: it constructs the application from `internal/*` and never reaches past it.

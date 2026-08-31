@@ -1,8 +1,9 @@
 # docs
 
-The Standards Lab organization's documentation landing zone: the canonical home for its
-architectures, standards, principles, and the documented details of every repository in the
-effort. Managed with the marathon workflow; start from `context/README.md`.
+The Standards Lab organization's documentation landing zone: the canonical home for the
+Elemental Architecture, its standards, its principles, and the documented details of every
+module repository in the effort. Managed with the marathon workflow; start from
+`context/README.md`.
 
 ## The workspace docs tier
 
@@ -25,10 +26,11 @@ an external project.
 The hierarchy runs from universal to specific, and each directory level documents one level of
 it:
 
-- `index.md` — orientation: the effort, the vocabulary, and the map of everything here.
-- `principles/` — organizational principles, universal across the organization.
-- `architectures/` — the language-agnostic software architectures.
-- `standards/<key>/` — each standard's definition, its principles, and its member repositories'
+- `index.md` — orientation: the blueprint, the vocabulary, and the map of everything here.
+- `architecture.md` — the Elemental Architecture, the one definitive architecture the blueprint
+  builds out.
+- `principles/` — the architecture's principles, the highest level of resolution.
+- `standards/<key>/` — each standard's definition, its principles, and its modules'
   documented details.
 - `harness/` — principles for the agentic infrastructure the organization builds with, outside
   the software hierarchy above.

@@ -2,7 +2,7 @@
 key: independent-releases
 name: Independent, artifact-keyed releases
 type: principle
-level: organization
+level: architecture
 ---
 
 # Independent, artifact-keyed releases

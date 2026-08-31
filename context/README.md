@@ -1,7 +1,7 @@
 # docs context
 
 The documentation landing zone of the Standards Lab organization: one repository documenting the
-organization's architectures, standards, principles, and the details of the repositories that
+organization's architecture, standards, principles, and the details of the modules that
 implement them, published as plain markdown a person reads on GitHub and a site serves without
 rewriting.
 
@@ -14,12 +14,12 @@ the derived principle beside the link.
 
 - **Orientation** (`index.md`) — the overview a reader starts from: the effort, the hierarchy,
   the vocabulary, and the routed map of the pages.
-- **Organizational principles** (`principles/`) — the conventions universal across the
-  organization, one page per principle.
-- **Architectures** (`architectures/`) — the language-agnostic software architectures; Elemental
-  Architecture is the first.
+- **The architecture** (`architecture.md`) — the Elemental Architecture, the one definitive
+  architecture the blueprint builds out.
+- **Architecture principles** (`principles/`) — the conventions every standard and module
+  satisfies, one page per principle.
 - **Standards** (`standards/`) — each standard's definition, its standard-level principles, and
-  its member repositories' documented details; `go-minimal` is the first.
+  its modules' documented details; `go-elemental` is the first.
 - **Harness** (`harness/`) — the principles of the organization's agentic infrastructure, with
   the harness repositories as worked examples.
 - **Metadata schema** — YAML front matter giving every page machine-readable identity, documented

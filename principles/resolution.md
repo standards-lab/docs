@@ -2,7 +2,7 @@
 key: resolution
 name: Resolution matches purpose
 type: principle
-level: organization
+level: architecture
 ---
 
 # Resolution matches purpose

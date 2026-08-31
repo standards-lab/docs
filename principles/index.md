@@ -1,14 +1,14 @@
 ---
 key: principles
-name: Organizational principles
+name: Architecture principles
 type: index
 ---
 
-# Organizational principles
+# Architecture principles
 
-The conventions universal across the organization. Every architecture, standard, and repository
-satisfies these; a lower level may enhance a principle, tightening it for its own scope, and
-never loosen it.
+The [Elemental Architecture](../architecture.md)'s principles: the highest level of resolution
+in the hierarchy, satisfied by every standard and module beneath it. A lower level may enhance
+a principle, tightening it for its own scope, and never loosen it.
 
 - [Resolution matches purpose](resolution.md)
 - [Dependencies flow downward only](downward-dependencies.md)
@@ -16,3 +16,4 @@ never loosen it.
 - [Service tiers](service-tiers.md)
 - [Independent, artifact-keyed releases](independent-releases.md)
 - [Repository topology](repository-topology.md)
+- [The composition root](composition-root.md)

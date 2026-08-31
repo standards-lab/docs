@@ -8,8 +8,12 @@ type: index
 
 The harness level of the organization: the agentic infrastructure that codifies its development
 processes, so the same processes apply consistently across every repository. The harness stands
-outside the five repository tiers ([repository topology](../principles/repository-topology.md));
-its principles govern how agent tooling is built, not what the software under development does.
+outside the architecture → standard → module hierarchy
+([repository topology](../principles/repository-topology.md)); its principles govern how agent
+tooling is built, not what the software under development does.
+Standing outside the software tiers does not make it peripheral: agentic development is part of
+the architecture strategy itself, and the harness's programming standards and workflow
+integrations are first-class deliverables of the organization.
 
 The worked examples are the harness's own artifacts:
 [claude-plugins](https://github.com/standards-lab/claude-plugins), the plugin marketplace whose
@@ -18,7 +22,7 @@ in a source-controlled repository and symlinked into place;
 [claude-settings](https://github.com/JaimeStill/claude-settings) is an example of such a
 user-scope repository.
 
-The harness diverges deliberately from go-minimal's changelog convention: a plugin's
+The harness diverges deliberately from go-elemental's changelog convention: a plugin's
 `CHANGELOG.md` headings carry no dates and no link definitions — dates and release links live
 on the GitHub releases the tags cut, and each file's preamble states so.
 

@@ -1,12 +1,12 @@
 # Splitting the entrypoint from the composition root
 
-`architectures/elemental-architecture/composition-root.md` currently states one concept —
+`principles/composition-root.md` currently states one concept —
 "composition root" — that owns two responsibilities: process entry and exit (traps signals,
 derives the root context, owns the exit code) and declaring the composition (wiring
-dependencies, nothing else executing). The Go Minimal realization we just built already
+dependencies, nothing else executing). The Go Elemental realization we just built already
 separates these in practice: `cmd/*` is the minimal entrypoint that traps the signal and derives
 the context, and passes it to `internal/*`, the encapsulated composition layer that does the
-actual wiring and never executes past declaring it (`standards/go-minimal/principles/
+actual wiring and never executes past declaring it (`standards/go-elemental/principles/
 topology-and-naming.md`'s "Application-layer import direction").
 
 The idea, raised while reviewing that addition: generalize the split to the architecture level.
