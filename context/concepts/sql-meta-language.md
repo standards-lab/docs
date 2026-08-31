@@ -5,6 +5,15 @@ composition core now in the `ast` package (renamed and layered in the `writes-vo
 session, 2026-08-28). Unscheduled R&D beyond the v1 path; `backlog.sql-meta-language` in
 the workspace roadmap cites this concept.
 
+> Superseded in part (2026-08-31): the DSL strategy (`standards-lab
+> context/design/dsl-driven-services.md`, `v1.data.sql`) retires the `ast` package this
+> concept treats as its permanent runtime half and its lowering target. The concept's claims
+> reframe rather than fall: authored SQL files become the authoring surface the meta language
+> would sit above, its schema-typing premise aligns with the new `migrate` mechanism, and
+> build-time fragment composition is its recognizable phase one. The `v1.data.sql.docs`
+> session rewrites this note; until then, read the ast-anchored passages as describing
+> v0.3.0.
+
 ## The gap
 
 SQL never got the infrastructure of a modern programming language: no modules, no composable
