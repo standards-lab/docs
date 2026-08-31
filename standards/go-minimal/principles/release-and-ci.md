@@ -15,23 +15,30 @@ this page states the shared mechanics and the variants each tier adds.
 
 A releasable artifact is released by pushing its tag: `v<semver>` for a module rooted at the
 repository, `<path>/v<semver>` for a nested sub-module (`postgres/v0.1.0`, `template/v0.1.0`).
-Each artifact keeps its own `CHANGELOG.md` in Keep-a-Changelog form with dated headings
-(`## [vX.Y.Z] - YYYY-MM-DD`); the release workflow derives the artifact from the tag and
-extracts the matching changelog section into a GitHub release. There is no umbrella version
-spanning a base module and its sub-modules.
+Each artifact keeps its own `CHANGELOG.md` in Keep-a-Changelog form: dated headings
+(`## [vX.Y.Z] - YYYY-MM-DD`), a standing `[Unreleased]` section where changes accumulate
+between cuts — the accumulation point when a coordinated multi-repo change lands over several
+sessions — and link-reference definitions resolving each bracketed heading to its compare or
+tag URL. The release workflow derives the artifact from the tag and extracts the matching
+changelog section into a GitHub release. There is no umbrella version spanning a base module
+and its sub-modules.
 
-Between releases, a prerelease tag (`v0.2.0-dev.1`) lets a consumer resolve an API still under
-active development. A minor-or-above release purges them: its changelog entry states that it
-includes every `-dev.N` change, and those tags are removed.
+A prerelease tag (`v0.2.0-dev.1`) is the mechanism for one narrow case: a separate module that
+must resolve an API still under development, where a local `go.work` cannot serve — another
+repository's CI, chiefly. It is cut only for that need, never as routine between-session
+practice, and a minor-or-above release purges the tags it subsumes: its changelog entry states
+that it includes every `-dev.N` change, and those tags are removed.
 
 Every repository's first release is `v0.1.0`, its changelog opening with a snapshot of what the
 artifact provides at that version.
 
 ## Branches and tags
 
-Release preparation commits directly to `main`: the changelog date, the license, and README or
-metadata edits. The tag is pushed only after main's CI run passes, so a release never points at
-a commit that failed CI.
+Release preparation commits directly to `main`: the changelog date, the license, metadata
+edits, and the README brought current with the release's changes. The changelog, `context/`,
+and `doc.go` move with the work itself; the README has no earlier forcing point, so this step
+is where it is checked rather than left to rot behind them. The tag is pushed only after
+main's CI run passes, so a release never points at a commit that failed CI.
 
 No release branch is retained. The tag is the durable artifact, and a branch can be recreated
 from its tag at any time. A `release/v<major>.<minor>.x` branch is created only when a
@@ -58,7 +65,10 @@ releases in the repositories above it, each pinning the versions it validated ag
 
 ## CI
 
-Every repository runs `go vet`, `go test -race`, and golangci-lint on every push. The variants:
+Every repository runs `go vet`, a `gofmt -l` formatting check, `go mod tidy -diff`,
+`go test -race`, and golangci-lint on every push. Tool versions are pinned — the Go toolchain
+and the golangci-lint version, in CI and in mise alike — so the gate is reproducible and moves
+only by a deliberate bump. The variants:
 
 - A single-module repository runs the checks at the repository root.
 - A multi-module repository runs a per-module matrix, each entry scoped to its module's

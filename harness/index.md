@@ -11,10 +11,16 @@ processes, so the same processes apply consistently across every repository. The
 outside the five repository tiers ([repository topology](../principles/repository-topology.md));
 its principles govern how agent tooling is built, not what the software under development does.
 
-The worked examples are the harness repositories themselves:
+The worked examples are the harness's own artifacts:
 [claude-plugins](https://github.com/standards-lab/claude-plugins), the plugin marketplace whose
-marathon workflow established most of these conventions, and claude-settings, the user-scoped
-configuration repository.
+marathon workflow established most of these conventions, and the user scope, `~/.claude` — kept
+in a source-controlled repository and symlinked into place;
+[claude-settings](https://github.com/JaimeStill/claude-settings) is an example of such a
+user-scope repository.
+
+The harness diverges deliberately from go-minimal's changelog convention: a plugin's
+`CHANGELOG.md` headings carry no dates and no link definitions — dates and release links live
+on the GitHub releases the tags cut, and each file's preamble states so.
 
 ## Principles
 
