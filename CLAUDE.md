@@ -4,12 +4,6 @@ The Standards Lab organization's documentation landing zone: the canonical home 
 architectures, standards, principles, and the documented details of every repository in the
 effort. Managed with the marathon workflow; start from `context/README.md`.
 
-## A context project
-
-This repository is a marathon **context** project (`.claude/marathon.toml` declares
-`kind = "context"`): there is no production source code — only documentation and the working
-context that maintains it. The agent authors all of it directly, under the developer's review.
-
 ## The workspace docs tier
 
 This repository is the single human-facing docs tier for the `~/architecture` workspace. Member

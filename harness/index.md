@@ -29,6 +29,10 @@ configuration repository.
   live in declared, schema-stable files inside the repository they describe.
 - [Configuration boundaries](configuration-boundaries.md) — user scope programs identity-level
   behavior; a skill programs only its own mechanics.
+- [Staged execution](staged-execution.md) — an agent implements an approved plan in
+  smallest-verifiable stages, each committed, reported, and reviewed before the next begins.
+- [Objective instructions](objective-instructions.md) — instructions state what the system
+  supports, in the present tense; removals live in the changelog, never as counter-instructions.
 
 ## Conventions not yet paged
 
