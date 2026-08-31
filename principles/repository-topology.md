@@ -2,7 +2,7 @@
 key: repository-topology
 name: Repository topology
 type: principle
-level: organization
+level: architecture
 ---
 
 # Repository topology
@@ -10,7 +10,7 @@ level: organization
 A repository is scoped to one concern of its standard. A reader who opens an infrastructure
 library sees the organization's conventions for that technology and nothing else, and a consumer
 who depends on it pulls in exactly one service. The organization defines five repository tiers,
-and every member repository of a standard belongs to exactly one:
+and every module repository of a standard belongs to exactly one:
 
 - **Core SDK** — the common primitives useful across all of a standard's application types:
   configuration, process lifecycle, logging. One repository per standard, at the bottom of the

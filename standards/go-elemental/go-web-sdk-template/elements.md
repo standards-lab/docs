@@ -8,12 +8,12 @@ repo: go-web-sdk-template
 # The elements in the template
 
 How the template realizes the
-[Elemental Architecture](../../../architectures/elemental-architecture/index.md)'s elements. The
+[Elemental Architecture](../../../architecture.md)'s elements. The
 architecture is defined once, at the organization level; this page maps its elements onto the
 scaffolded baseline and adds nothing to the definition.
 
 - **Application** — what a generated service is: the deployable unit, here a web service. Its
-  [composition root](../../../architectures/elemental-architecture/composition-root.md) is
+  [composition root](../../../principles/composition-root.md) is
   `internal/app`, where the `App` structure orchestrates the root composition from the
   service's build points; `cmd/server` is the entrypoint alone.
 - **Application layer** — `internal/app`. It owns the process lifecycle, assembles

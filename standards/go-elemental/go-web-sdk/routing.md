@@ -41,6 +41,6 @@ mounted at `/api/v1`. The native mux answers every path no module owns.
 
 A malformed prefix, a duplicate pattern, a second module at a taken prefix, and a sealed-group
 mutation all panic. The
-[composition root](../../../architectures/elemental-architecture/composition-root.md) is written
+[composition root](../../../principles/composition-root.md) is written
 once and runs at boot, so a loud failure there beats a silent one in production; the lifecycle
 coordinator takes the same posture toward a late registration.

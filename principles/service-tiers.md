@@ -2,7 +2,7 @@
 key: service-tiers
 name: Service tiers
 type: principle
-level: organization
+level: architecture
 ---
 
 # Service tiers
@@ -32,7 +32,7 @@ to reason about.
 
 What keeps native use from spreading a provider across a codebase is the [resolution
 rule](resolution.md) applied to provider imports. An application's
-[composition root](../architectures/elemental-architecture/composition-root.md) is the package
+[composition root](composition-root.md) is the package
 where it assembles its dependencies: it constructs the providers, the pools, the loggers, and
 the configuration, and passes them to the packages that use them. A package that
 interfaces at the native tier wraps that use and presents the standard tier upward: the domain

@@ -2,7 +2,7 @@
 key: composition-root
 name: The composition root
 type: principle
-level: elemental-architecture
+level: architecture
 ---
 
 # The composition root
@@ -15,7 +15,7 @@ dependency; everything else receives its dependencies from the composition root.
 ## It declares; it does not execute
 
 The composition root's output is a declared composition, and execution belongs to the
-[application layer](index.md). The root states which infrastructure services exist and in what
+[application layer](../architecture.md). The root states which infrastructure services exist and in what
 order they start, which domain-service modules mount on which routes, which Reactors run
 alongside the transport, and which middleware wraps it. A root is not limited to one runner: the
 transport and any Reactors all register on the same lifecycle coordinator, ordered by stage like
@@ -25,7 +25,7 @@ execution.
 
 ## It is the boundary for provider imports
 
-The composition root is where the [service tiers](../../principles/service-tiers.md) import
+The composition root is where the [service tiers](service-tiers.md) import
 boundary anchors. Only the composition root, the application's binaries, and packages that
 declare native use import a provider. The root constructs the provider and passes the resulting
 service downward as an ordinary dependency, so every package below it stays provider-free and

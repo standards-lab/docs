@@ -1,7 +1,7 @@
 ---
 key: go-web-sdk-template
 name: go-web-sdk-template
-type: repository
+type: module
 tier: template
 repo: https://github.com/standards-lab/go-web-sdk-template
 standard: go-elemental
@@ -11,7 +11,7 @@ standard: go-elemental
 
 The web service template of [Go Elemental](../index.md): scaffolds an initial Go Elemental web
 service application, and the first code expression of the
-[Elemental Architecture](../../../architectures/elemental-architecture/index.md)'s application
+[Elemental Architecture](../../../architecture.md)'s application
 layout. A generated service starts as a minimal runnable web service on go-core and go-web-sdk
 at pinned releases: layered configuration, the cold/hot start lifecycle, the liveness and
 readiness probes, and the five build points a service grows from.

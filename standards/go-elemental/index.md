@@ -9,7 +9,7 @@ status: active
 # Go Elemental
 
 The Go implementation of the
-[Elemental Architecture](../../architectures/elemental-architecture/index.md). Go Elemental
+[Elemental Architecture](../../architecture.md). Go Elemental
 implements the architecture on the Go standard library, and its goal is to demonstrate what the
 platform provides by itself: a complete reference architecture with the smallest deliberate
 dependency surface, expressing the architecture's supply-chain purpose in its strictest form.
@@ -19,7 +19,7 @@ dependency surface, expressing the architecture's supply-chain purpose in its st
 The standard library first, and at most packages as idiomatic and stable as the standard library
 itself (`golang.org/x/…`, `google/uuid`, and the like). No frameworks; raw drivers and plain SQL
 over ORMs; a web-platform-native client. Vendor libraries are isolated in provider sub-modules
-that pin their own SDKs. A member repository may enhance the line; go-core admits the standard
+that pin their own SDKs. A module may enhance the line; go-core admits the standard
 library alone.
 
 The declared stack of the standard's reference architecture selects one provider per service;
@@ -28,7 +28,7 @@ for SQL that provider is Postgres.
 ## Principles
 
 The conventions every Go Elemental repository shares, enhancing the
-[organizational principles](../../principles/index.md):
+[architecture principles](../../principles/index.md):
 
 - [Dependencies](principles/dependencies.md) — the dependency line applied to each repository
   tier, and where vendor libraries are isolated.

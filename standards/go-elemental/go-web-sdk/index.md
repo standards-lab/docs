@@ -1,7 +1,7 @@
 ---
 key: go-web-sdk
 name: go-web-sdk
-type: repository
+type: module
 tier: sdk
 repo: https://github.com/standards-lab/go-web-sdk
 standard: go-elemental

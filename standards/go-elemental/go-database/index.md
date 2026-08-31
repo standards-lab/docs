@@ -1,7 +1,7 @@
 ---
 key: go-database
 name: go-database
-type: repository
+type: module
 tier: infrastructure
 repo: https://github.com/standards-lab/go-database
 standard: go-elemental

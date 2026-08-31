@@ -1,7 +1,7 @@
 ---
 key: go-core
 name: go-core
-type: repository
+type: module
 tier: core-sdk
 repo: https://github.com/standards-lab/go-core
 standard: go-elemental

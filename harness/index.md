@@ -8,8 +8,9 @@ type: index
 
 The harness level of the organization: the agentic infrastructure that codifies its development
 processes, so the same processes apply consistently across every repository. The harness stands
-outside the five repository tiers ([repository topology](../principles/repository-topology.md));
-its principles govern how agent tooling is built, not what the software under development does.
+outside the architecture → standard → module hierarchy
+([repository topology](../principles/repository-topology.md)); its principles govern how agent
+tooling is built, not what the software under development does.
 Standing outside the software tiers does not make it peripheral: agentic development is part of
 the architecture strategy itself, and the harness's programming standards and workflow
 integrations are first-class deliverables of the organization.

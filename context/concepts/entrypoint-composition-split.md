@@ -1,6 +1,6 @@
 # Splitting the entrypoint from the composition root
 
-`architectures/elemental-architecture/composition-root.md` currently states one concept —
+`principles/composition-root.md` currently states one concept —
 "composition root" — that owns two responsibilities: process entry and exit (traps signals,
 derives the root context, owns the exit code) and declaring the composition (wiring
 dependencies, nothing else executing). The Go Elemental realization we just built already

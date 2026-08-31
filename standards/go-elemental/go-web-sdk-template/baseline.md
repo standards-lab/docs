@@ -12,7 +12,7 @@ The architecture the template scaffolds, and the principles that keep it minimal
 ## Architecture
 
 A single Go module built on go-core and go-web-sdk at pinned releases. The
-[composition root](../../../architectures/elemental-architecture/composition-root.md) is
+[composition root](../../../principles/composition-root.md) is
 `internal/app`, the last of four layers constructed in order: `internal/infrastructure`,
 `internal/domain`, `internal/reactors`, and `internal/app` itself, whose `App` structure
 assembles the service's five build points — route registration, the middleware stack, the

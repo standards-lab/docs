@@ -2,7 +2,7 @@
 key: downward-dependencies
 name: Dependencies flow downward only
 type: principle
-level: organization
+level: architecture
 ---
 
 # Dependencies flow downward only
