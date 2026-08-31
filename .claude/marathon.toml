@@ -1,6 +1,5 @@
 # Project kind: this repository is context (the organization's documentation landing
-# zone), not production source code. The agent authors it directly; there is no
-# implementation guide or tests.
+# zone), not production source code.
 [project]
 kind = "context"
 
