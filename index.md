@@ -6,13 +6,13 @@ type: index
 
 # Standards Lab
 
-Standards Lab is a clean-slate effort to establish standards for modern, inner-source enterprise
-development. Modern is used specifically over "cloud native" and means the next generation of
-primitives for what software emits — the library, the binary, the container image — not any one
-deployment venue. The effort demonstrates a larger vision: interoperable, domain-driven
-services; data composition over rigid, tightly coupled schema; deliberate control of the layers
-above the transport; and an inner-source culture that standardizes reusable patterns across the
-enterprise.
+Standards Lab is the blueprint for formalizing an effective, modern, agentic software
+architecture strategy; the vision is stated in the
+[organization profile](https://github.com/standards-lab). This landing zone is the catalog: it
+documents the blueprint's own architectures, standards, and principles in depth, and references
+implementations that live elsewhere — graduated organizations and external implementations —
+rather than hosting their documentation. An architecture or standard intended for production
+use graduates to its own organization, whose name carries the standard's identity.
 
 Standardization here is emergent rather than decreed. A convention becomes a standard only after
 working code has proven it: each repository in the organization is a worked example that others
@@ -72,16 +72,16 @@ worked examples.
 
 ## Standards
 
-- [Go Minimal](standards/go-minimal/index.md) — the minimal-dependency Go standard: a complete
-  implementation of the Elemental Architecture on the Go standard library, with the smallest
+- [Go Elemental](standards/go-elemental/index.md) — the Go implementation of the Elemental
+  Architecture: a complete reference architecture on the Go standard library, with the smallest
   deliberate dependency surface. Its member repositories, by tier:
-  - **Core SDK** — [go-core](standards/go-minimal/go-core/index.md): defines the common
-    primitives useful across all Go Minimal application types.
-  - **Infrastructure libraries** — [go-database](standards/go-minimal/go-database/index.md): the
+  - **Core SDK** — [go-core](standards/go-elemental/go-core/index.md): defines the common
+    primitives useful across all Go Elemental application types.
+  - **Infrastructure libraries** — [go-database](standards/go-elemental/go-database/index.md): the
     SQL service in two tiers, with providers as sub-modules.
-  - **Application SDKs** — [go-web-sdk](standards/go-minimal/go-web-sdk/index.md): the SDK for
-    building Go Minimal web service applications.
-  - **Templates** — [go-web-sdk-template](standards/go-minimal/go-web-sdk-template/index.md):
-    scaffolds an initial Go Minimal web service application.
-  - **Reference architectures** — go-web-service: serves as a holistic Go Minimal web service
-    reference architecture (planned).
+  - **Application SDKs** — [go-web-sdk](standards/go-elemental/go-web-sdk/index.md): the SDK for
+    building Go Elemental web service applications.
+  - **Templates** — [go-web-sdk-template](standards/go-elemental/go-web-sdk-template/index.md):
+    scaffolds an initial Go Elemental web service application.
+  - **Reference architectures** — go-web-service: the holistic Go Elemental web service
+    reference, grown in documented layers; versionless until its 1.0.

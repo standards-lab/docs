@@ -7,7 +7,7 @@ the pass's close.
 
 ## New pages
 
-- **The DSL-driven-services principle** (go-minimal principles): the protocol-driven versus
+- **The DSL-driven-services principle** (go-elemental principles): the protocol-driven versus
   DSL-driven distinction, the five things the host layer exists for, sufficiency-not-only-
   capability, structural injection safety, portability by discipline with the trade stated —
   the strategy's §2.1–2.5, in page form.
@@ -15,8 +15,8 @@ the pass's close.
   for written context, from the coordinator's `design/context-architecture.md`, stated for
   human contributors.
 - **The go-web-service pages**: the service is listed as "(planned)" in `index.md` and
-  `standards/go-minimal/index.md` despite six merged PRs, a migrated schema, and being the
-  subject of the whole v1 goal tree; no `standards/go-minimal/go-web-service/` directory
+  `standards/go-elemental/index.md` despite six merged PRs, a migrated schema, and being the
+  subject of the whole v1 goal tree; no `standards/go-elemental/go-web-service/` directory
   exists, and `tier: reference` — declared as a valid front-matter value in `README.md` — is
   used by zero pages. Settle the **service page type** here: the v1 criteria require "a
   `docs/` page names each capability the service consumes, its class, and the port list" — a
@@ -25,19 +25,19 @@ the pass's close.
 
 ## go-database pages (the bounded invalidation)
 
-- `standards/go-minimal/go-database/layers.md` — total loss: all 69 lines are the four-layer
+- `standards/go-elemental/go-database/layers.md` — total loss: all 69 lines are the four-layer
   ontology. Replaced by the v0.4 shape.
-- `standards/go-minimal/go-database/index.md` — "built as four layers" and three of six
+- `standards/go-elemental/go-database/index.md` — "built as four layers" and three of six
   package bullets; rewrite around `database`/`query`/`migrate`/`seed`/`postgres`.
-- `standards/go-minimal/go-database/dialect.md` — the "Render capabilities" half
+- `standards/go-elemental/go-database/dialect.md` — the "Render capabilities" half
   (`PagingRenderer` override, `ReturningRenderer` declared-native) presupposes Go-side
   rendering; rewrite around what survives (`Placeholder`, `MapError`, the divergence ledger's
   by-discipline form).
-- `standards/go-minimal/go-database/tiers.md`, `providers.md` — survive; verify wording.
-- `standards/go-minimal/go-web-sdk/reads.md:28` — "deliberately parallel to go-database's
+- `standards/go-elemental/go-database/tiers.md`, `providers.md` — survive; verify wording.
+- `standards/go-elemental/go-web-sdk/reads.md:28` — "deliberately parallel to go-database's
   read vocabulary" and "go-database answers with its typed unknown-field error" (that error
   lived in `operation`; it survives into `query` — re-anchor, don't delete).
-- `standards/go-minimal/go-web-sdk/middleware.md` — carries the incorrect claim that seeding
+- `standards/go-elemental/go-web-sdk/middleware.md` — carries the incorrect claim that seeding
   the recorded status "removes any need to intercept the body write" (the shared writer must
   intercept `Write`); corrected by the `v1.web.adapter` session, verified here.
 

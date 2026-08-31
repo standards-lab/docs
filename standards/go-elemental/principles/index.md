@@ -1,12 +1,12 @@
 ---
-key: go-minimal-principles
-name: Go Minimal principles
+key: go-elemental-principles
+name: Go Elemental principles
 type: index
 ---
 
-# Go Minimal principles
+# Go Elemental principles
 
-The conventions every Go Minimal repository shares. Each enhances the
+The conventions every Go Elemental repository shares. Each enhances the
 [organizational principles](../../../principles/index.md) for the standard's scope; a member
 repository may enhance one further, stating the enhancement where it links to the principle.
 

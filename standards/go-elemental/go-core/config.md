@@ -7,7 +7,7 @@ repo: go-core
 
 # Configuration
 
-How a Go Minimal application's configuration is loaded and finalized. The `config` package
+How a Go Elemental application's configuration is loaded and finalized. The `config` package
 defines the mechanism; the code and its `doc.go` are authoritative for the API.
 
 ## A loader in the Core SDK

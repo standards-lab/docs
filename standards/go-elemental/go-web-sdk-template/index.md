@@ -4,12 +4,12 @@ name: go-web-sdk-template
 type: repository
 tier: template
 repo: https://github.com/standards-lab/go-web-sdk-template
-standard: go-minimal
+standard: go-elemental
 ---
 
 # go-web-sdk-template
 
-The web service template of [Go Minimal](../index.md): scaffolds an initial Go Minimal web
+The web service template of [Go Elemental](../index.md): scaffolds an initial Go Elemental web
 service application, and the first code expression of the
 [Elemental Architecture](../../../architectures/elemental-architecture/index.md)'s application
 layout. A generated service starts as a minimal runnable web service on go-core and go-web-sdk

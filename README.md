@@ -30,8 +30,8 @@ loosen it.
 Every page opens with YAML front matter. Common fields:
 
 ```yaml
-key:  go-minimal        # stable identifier; matches the page's path segment
-name: Go Minimal        # prose name
+key:  go-elemental        # stable identifier; matches the page's path segment
+name: Go Elemental        # prose name
 type: standard          # index | principle | architecture | standard | repository | page
 ```
 

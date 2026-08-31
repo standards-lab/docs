@@ -19,7 +19,7 @@ the derived principle beside the link.
 - **Architectures** (`architectures/`) — the language-agnostic software architectures; Elemental
   Architecture is the first.
 - **Standards** (`standards/`) — each standard's definition, its standard-level principles, and
-  its member repositories' documented details; `go-minimal` is the first.
+  its member repositories' documented details; `go-elemental` is the first.
 - **Harness** (`harness/`) — the principles of the organization's agentic infrastructure, with
   the harness repositories as worked examples.
 - **Metadata schema** — YAML front matter giving every page machine-readable identity, documented

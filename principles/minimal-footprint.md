@@ -14,6 +14,13 @@ control. The bounding guideline: operate as close to the lowest level idiomatic 
 necessary to meet your requirements. Reach for the platform and its standard library first, and
 adopt an established idiom above them only when a requirement demands it.
 
+The principle originates in the
+[Elemental Architecture](../architectures/elemental-architecture/index.md)'s supply-chain
+purpose, promoted to organizational scope, and carries both of its dimensions: mitigating what
+a dependency admits, and establishing the deliberate maintenance boundaries that keep a
+dependency set current — a handful of deliberately sourced dependencies can be held pinned and
+current the week upstream releases; fifty cannot.
+
 Heavy dependencies, such as vendor SDKs and database drivers, are isolated behind sub-modules
 that present a light interface. A consumer that needs only the interface never compiles the
 weight. [Service tiers](service-tiers.md) applies this to infrastructure libraries: the base

@@ -13,8 +13,14 @@ one standard, and a standard's principles enhance the organization's without loo
 
 An organization sustains parallel standards. A standard built on a web framework, with an SDK
 and a template idiomatic to that framework, is as legitimate as one built on the standard
-library; each draws its own dependency line and declares it. A standard that re-expresses
-another on a different technology declares that lineage in its definition.
+library; each draws its own dependency line, declares it, and implements the architecture whose
+posture it satisfies — a framework-heavy standard implements its own architecture, not
+Elemental. A standard that re-expresses another on a different technology declares that lineage
+in its definition.
 
-- [Go Minimal](go-minimal/index.md) — the minimal-dependency Go standard: a complete
-  implementation of the Elemental Architecture on the Go standard library.
+This index lists the blueprint's own standards, documented here in depth. Implementations that
+live elsewhere — graduated organizations and external implementations of these architectures —
+are referenced from the organization's catalog rather than documented here.
+
+- [Go Elemental](go-elemental/index.md) — the Go implementation of the Elemental Architecture:
+  a complete reference architecture on the Go standard library.

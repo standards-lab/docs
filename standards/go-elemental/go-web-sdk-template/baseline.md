@@ -18,7 +18,7 @@ A single Go module built on go-core and go-web-sdk at pinned releases. The
 assembles the service's five build points — route registration, the middleware stack, the
 domain and reactor composition roots, and the infrastructure constructor — into the running
 process. `cmd/server` is the entrypoint alone, importing only `internal/app`, per the
-[import direction](../principles/topology-and-naming.md) every Go Minimal application follows.
+[import direction](../principles/topology-and-naming.md) every Go Elemental application follows.
 
 - **The entrypoint** (`cmd/server`) owns the signal-derived root context and the exit code,
   through a testable run function: configuration load, `app.New`, run. The pre-infrastructure

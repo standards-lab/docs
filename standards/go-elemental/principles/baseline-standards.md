@@ -2,7 +2,7 @@
 key: baseline-standards
 name: Baseline-standard ownership
 type: principle
-level: go-minimal
+level: go-elemental
 ---
 
 # Baseline-standard ownership

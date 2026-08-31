@@ -2,12 +2,12 @@
 key: dependencies
 name: Dependencies
 type: principle
-level: go-minimal
+level: go-elemental
 ---
 
 # Dependencies
 
-Go Minimal's dependency line: the standard library first, and at most packages as idiomatic and
+Go Elemental's dependency line: the standard library first, and at most packages as idiomatic and
 stable as the standard library itself (`golang.org/x/…`, `google/uuid`, and the like). No
 frameworks. Vendor SDKs and database drivers enter only through provider sub-modules that pin
 them, so importing a base module compiles no vendor code.

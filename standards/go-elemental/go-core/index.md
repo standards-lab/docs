@@ -4,12 +4,12 @@ name: go-core
 type: repository
 tier: core-sdk
 repo: https://github.com/standards-lab/go-core
-standard: go-minimal
+standard: go-elemental
 ---
 
 # go-core
 
-The Core SDK of [Go Minimal](../index.md): the common primitives useful across all Go Minimal
+The Core SDK of [Go Elemental](../index.md): the common primitives useful across all Go Elemental
 application types, and the first place the standard becomes code. A package is admitted only
 when every application type in the standard uses it. Functionality specific to a single
 application type belongs in that type's application SDK, and functionality specific to an
