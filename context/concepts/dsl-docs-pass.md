@@ -5,6 +5,16 @@ roadmap cites this note as the session's work list. The strategy it documents is
 coordinator's `standards-lab/context/design/dsl-driven-services.md`. The note is deleted at
 the pass's close.
 
+> Amended (2026-09-03): the `v1.data.sql.prototype` experiment split the mechanism out of
+> go-database into `sqlate`, a standalone library. The inventory gains the sqlate pages and the
+> grammar's page, recorded as the standard's own artifact with sqlate its first host; the
+> go-database pages below are rewritten around the infrastructure service and the `admin`
+> package rather than `query` and `migrate` inside it; a content-patterns reference (status
+> filters, search, hierarchy CTEs as the domain's, never the library's) joins the principle's
+> section; and the architecture definition is amended so a Domain Service anchors a domain, a
+> composition of one or more Entities. The experiment's review
+> (`standards-lab/experiments/sql-dsl/REVIEW.md`) is the source.
+
 ## New pages
 
 - **The DSL-driven-services principle** (go-elemental principles): the protocol-driven versus

@@ -13,6 +13,15 @@ the workspace roadmap cites this concept.
 > build-time fragment composition is its recognizable phase one. The `v1.data.sql.docs`
 > session rewrites this note; until then, read the ast-anchored passages as describing
 > v0.3.0.
+>
+> Reframed (2026-09-03): the `v1.data.sql.prototype` experiment built the first phase. The
+> sqlate grammar (`--|` declarations, `{{ }}` parameters and placeholders with list expansion,
+> `{{> ns.name}}` includes, namespaces, tiers, overlays, and `sqlint.toml` with `[export]`) is
+> language independent, and `sqlate` is its first host, in Go; another host implements the
+> grammar, not the Go API. What this concept still holds beyond that phase is schema typing
+> (types from the migration set rather than declared) and portability by construction
+> (compiled to a dialect rather than declared by tier). `backlog.sql-meta-language` narrows to
+> those two.
 
 ## The gap
 
